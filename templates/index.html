@@ -1,0 +1,344 @@
+<!DOCTYPE html>
+<html lang="vi">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>SmartDesk SaaS | Nền tảng quản trị doanh nghiệp tự động</title>
+    <link rel="stylesheet" href="{{ url_for('static', filename='css/style.css') }}">
+    <link rel="preconnect" href="https://fonts.googleapis.com">
+    <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+    <link href="https://fonts.googleapis.com/css2?family=Inter:wght@400;500;600;800&display=swap" rel="stylesheet">
+</head>
+<body>
+    <nav>
+        <div class="container" style="display: flex; justify-content: space-between; align-items: center; width: 100%;">
+            <a href="#" class="nav-logo">
+                <svg width="32" height="32" viewBox="0 0 32 32" fill="none" xmlns="http://www.w3.org/2000/svg">
+                    <rect width="32" height="32" rx="8" fill="#0066FF"/>
+                    <path d="M10 16L14 20L22 12" stroke="white" stroke-width="3" stroke-linecap="round" stroke-linejoin="round"/>
+                </svg>
+                SmartDesk
+            </a>
+            <div class="nav-links">
+                <a href="#features">Tính năng</a>
+                <a href="#steps">Quy trình</a>
+                <a href="#pricing">Bảng giá</a>
+                <a href="#faq">Câu hỏi</a>
+                <a href="#" class="btn-nav">Đăng nhập</a>
+            </div>
+        </div>
+    </nav>
+
+    <header class="hero">
+        <div class="container">
+            <div class="hero-badge">Phiên bản v2026.1 đã sẵn sàng</div>
+            <h1>Quản trị doanh nghiệp,<br>Khởi tạo tức thì.</h1>
+            <p>Sở hữu ngay một instance SmartDesk hoàn toàn độc lập chỉ trong chưa đầy 3 phút. Bảo mật, ổn định và tự động hóa 100%.</p>
+        </div>
+    </header>
+
+    <section class="provision-section">
+        <div class="container">
+            <div class="card">
+                <div class="form-title">
+                    <h2>Đăng ký sử dụng ngay</h2>
+                    <p style="color: var(--text-muted); font-size: 0.875rem;">Điền thông tin doanh nghiệp để khởi tạo môi trường của bạn.</p>
+                </div>
+
+                <form id="provisionForm">
+                    <div class="form-group">
+                        <label for="company">Tên công ty / Tổ chức</label>
+                        <input type="text" id="company" placeholder="Ví dụ: Công ty Công nghệ SmartPro" required>
+                        <div class="url-preview">
+                            Địa chỉ truy cập của bạn: <span id="slugPreview">...</span>.smartpro.com.vn
+                        </div>
+                    </div>
+
+                    <div class="form-group">
+                        <label for="email">Email liên hệ</label>
+                        <input type="email" id="email" placeholder="admin@congty.com" required>
+                    </div>
+
+                    <button type="submit" class="btn-primary" id="submitBtn">
+                        <span class="loader"></span>
+                        <span class="btn-text">Bắt đầu khởi tạo hệ thống</span>
+                    </button>
+                </form>
+
+                <div id="status"></div>
+
+                <div class="progress-container" id="progressSection">
+                    <div style="display: flex; justify-content: space-between; margin-bottom: 0.5rem; font-size: 0.8125rem;">
+                        <span id="progressLabel" style="color: var(--text-muted);">Đang chuẩn bị...</span>
+                        <span id="progressPercent" style="color: var(--primary); font-weight: 700;">0%</span>
+                    </div>
+                    <div class="progress-bar-bg">
+                        <div class="progress-bar-fill" id="progressBar"></div>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </section>
+
+    <section class="steps" id="steps">
+        <div class="container">
+            <div class="section-header">
+                <h2>Quy trình hoạt động</h2>
+                <p style="color: var(--text-muted);">Tự động hóa hoàn toàn từ khâu đăng ký đến khi bàn giao.</p>
+            </div>
+            <div class="steps-grid">
+                <div class="step-card">
+                    <div class="step-number">1</div>
+                    <h3>Đăng ký</h3>
+                    <p style="color: var(--text-muted); font-size: 0.875rem;">Điền thông tin doanh nghiệp và email để hệ thống xác nhận.</p>
+                </div>
+                <div class="step-card">
+                    <div class="step-number">2</div>
+                    <h3>Khởi tạo tự động</h3>
+                    <p style="color: var(--text-muted); font-size: 0.875rem;">Hệ thống API gọi Portainer để tạo Container và Database riêng biệt.</p>
+                </div>
+                <div class="step-card">
+                    <div class="step-number">3</div>
+                    <h3>Bàn giao & Sử dụng</h3>
+                    <p style="color: var(--text-muted); font-size: 0.875rem;">Nhận URL truy cập và bắt đầu quản trị doanh nghiệp của bạn.</p>
+                </div>
+            </div>
+        </div>
+    </section>
+
+    <section class="features" id="features">
+        <div class="container">
+            <div class="section-header">
+                <h2>Tại sao nên chọn SmartDesk SaaS?</h2>
+                <p style="color: var(--text-muted);">Hạ tầng tiêu chuẩn doanh nghiệp, an toàn và tin cậy.</p>
+            </div>
+            <div class="features-grid">
+                <div class="feature-card">
+                    <div class="feature-icon">🛡️</div>
+                    <h3>Cô lập dữ liệu tuyệt đối</h3>
+                    <p style="color: var(--text-muted); font-size: 0.9375rem;">Mỗi khách hàng sở hữu Container Docker và Database MariaDB riêng biệt. Dữ liệu của bạn luôn an toàn và riêng tư.</p>
+                </div>
+                <div class="feature-card">
+                    <div class="feature-icon">⚡</div>
+                    <h3>Cấp phát tức thì</h3>
+                    <p style="color: var(--text-muted); font-size: 0.9375rem;">Không cần cài đặt thủ công. Hệ thống tự động cấu hình Domain, SSL và Database chỉ trong vài giây.</p>
+                </div>
+                <div class="feature-card">
+                    <div class="feature-icon">🔒</div>
+                    <h3>Chứng chỉ SSL tự động</h3>
+                    <p style="color: var(--text-muted); font-size: 0.9375rem;">Mọi instance đều được bảo mật bằng chứng chỉ Let's Encrypt cấp qua Traefik v3, đảm bảo kết nối mã hóa.</p>
+                </div>
+                <div class="feature-card">
+                    <div class="feature-icon">💾</div>
+                    <h3>Sao lưu hàng ngày</h3>
+                    <p style="color: var(--text-muted); font-size: 0.9375rem;">Dữ liệu của bạn được sao lưu định kỳ vào mỗi 2:00 AM, giúp bạn yên tâm không lo mất mát thông tin.</p>
+                </div>
+                <div class="feature-card">
+                    <div class="feature-icon">📈</div>
+                    <h3>Hiệu năng tối ưu</h3>
+                    <p style="color: var(--text-muted); font-size: 0.9375rem;">Giới hạn tài nguyên (CPU/RAM) thông minh cho mỗi instance, đảm bảo hệ thống luôn mượt mà.</p>
+                </div>
+                <div class="feature-card">
+                    <div class="feature-icon">🤝</div>
+                    <h3>Hỗ trợ 24/7</h3>
+                    <p style="color: var(--text-muted); font-size: 0.9375rem;">Đội ngũ kỹ thuật luôn sẵn sàng hỗ trợ bạn khắc phục mọi sự cố hạ tầng một cách nhanh chóng nhất.</p>
+                </div>
+            </div>
+        </div>
+    </section>
+
+    <section class="pricing" id="pricing">
+        <div class="container">
+            <div class="section-header">
+                <h2>Bảng giá dịch vụ</h2>
+                <p style="color: var(--text-muted);">Lựa chọn gói phù hợp nhất với quy mô doanh nghiệp của bạn.</p>
+            </div>
+            <div class="pricing-grid">
+                <div class="price-card">
+                    <h3>Gói Dùng Thử</h3>
+                    <div class="price-amount">0đ<span> / 15 ngày</span></div>
+                    <ul class="price-features">
+                        <li>✅ 01 Instance SmartDesk</li>
+                        <li>✅ 1 vCPU / 512MB RAM</li>
+                        <li>✅ Database độc lập</li>
+                        <li>✅ Subdomain riêng</li>
+                        <li>❌ Không hỗ trợ Backup</li>
+                    </ul>
+                    <a href="#provisionForm" class="btn-primary" style="background: var(--bg-soft); color: var(--text-main);">Đăng ký thử</a>
+                </div>
+                <div class="price-card popular">
+                    <div class="price-badge">Phổ biến nhất</div>
+                    <h3>Gói Doanh Nghiệp</h3>
+                    <div class="price-amount">499.000đ<span> / tháng</span></div>
+                    <ul class="price-features">
+                        <li>✅ Toàn bộ tính năng gói dùng thử</li>
+                        <li>✅ 2 vCPU / 2GB RAM</li>
+                        <li>✅ Backup hàng ngày</li>
+                        <li>✅ Hỗ trợ SSL vĩnh viễn</li>
+                        <li>✅ Hỗ trợ kỹ thuật ưu tiên</li>
+                    </ul>
+                    <a href="#provisionForm" class="btn-primary">Chọn gói này</a>
+                </div>
+                <div class="price-card">
+                    <h3>Gói Enterprise</h3>
+                    <div class="price-amount">Liên hệ<span></span></div>
+                    <ul class="price-features">
+                        <li>✅ Hạ tầng riêng biệt</li>
+                        <li>✅ Không giới hạn tài nguyên</li>
+                        <li>✅ Tùy chỉnh tên miền riêng</li>
+                        <li>✅ Backup đa điểm</li>
+                        <li>✅ SLA 99.9%</li>
+                    </ul>
+                    <a href="#provisionForm" class="btn-primary" style="background: var(--bg-soft); color: var(--text-main);">Liên hệ ngay</a>
+                </div>
+            </div>
+        </div>
+    </section>
+
+    <section class="faq" id="faq">
+        <div class="container">
+            <div class="section-header">
+                <h2>Câu hỏi thường gặp</h2>
+                <p style="color: var(--text-muted);">Giải đáp nhanh các thắc mắc về hệ thống SmartDesk.</p>
+            </div>
+            <div class="faq-grid">
+                <div class="faq-item">
+                    <h4>SmartDesk là gì?</h4>
+                    <p style="color: var(--text-muted);">SmartDesk là giải pháp quản trị doanh nghiệp toàn diện giúp quản lý tài sản, hỗ trợ khách hàng và tối ưu hóa quy trình làm việc.</p>
+                </div>
+                <div class="faq-item">
+                    <h4>Dữ liệu của tôi có an toàn không?</h4>
+                    <p style="color: var(--text-muted);">Có, mỗi khách hàng được cấp một môi trường hoàn toàn riêng biệt từ tầng Database đến App, đảm bảo không có rò rỉ dữ liệu giữa các bên.</p>
+                </div>
+                <div class="faq-item">
+                    <h4>Tôi có thể nâng cấp gói dịch vụ sau này không?</h4>
+                    <p style="color: var(--text-muted);">Chắc chắn rồi. Bạn có thể nâng cấp tài nguyên CPU/RAM bất cứ lúc nào mà không làm gián đoạn dịch vụ.</p>
+                </div>
+            </div>
+        </div>
+    </section>
+
+    <footer>
+        <div class="container">
+            <p>&copy; 2026 SmartDesk Platform. Một sản phẩm của SmartPro.</p>
+        </div>
+    </footer>
+
+    <script>
+        const companyInput = document.getElementById('company');
+        const slugPreview = document.getElementById('slugPreview');
+        const BASE_DOMAIN = "smartpro.com.vn";
+
+        // URL Preview Logic
+        companyInput.addEventListener('input', (e) => {
+            const val = e.target.value;
+            if (!val) {
+                slugPreview.textContent = "...";
+                return;
+            }
+            const slug = val.toLowerCase()
+                .normalize('NFD').replace(/[\u0300-\u036f]/g, '')
+                .replace(/[^\w\s-]/g, '')
+                .replace(/[-\s]+/g, '-');
+            slugPreview.textContent = slug;
+        });
+
+        const form = document.getElementById('provisionForm');
+        const status = document.getElementById('status');
+        const btn = document.getElementById('submitBtn');
+        const progressSection = document.getElementById('progressSection');
+        const progressBar = document.getElementById('progressBar');
+        const progressLabel = document.getElementById('progressLabel');
+        const progressPercent = document.getElementById('progressPercent');
+
+        form.addEventListener('submit', async (e) => {
+            e.preventDefault();
+            
+            const company = companyInput.value;
+            const email = document.getElementById('email').value;
+
+            // UI Reset
+            status.style.display = 'none';
+            btn.disabled = true;
+            btn.classList.add('loading');
+
+            try {
+                const response = await fetch('/provision', {
+                    method: 'POST',
+                    headers: { 
+                        'Content-Type': 'application/json',
+                        'X-Provisioner-Key': '{{ api_secret }}'
+                    },
+                    body: JSON.stringify({ company, email })
+                });
+
+                const result = await response.json();
+
+                if (result.success) {
+                    status.textContent = result.message;
+                    status.className = 'success';
+                    status.style.display = 'block';
+                    
+                    // Start Polling
+                    startPolling(result.slug);
+                } else {
+                    const errorMsg = typeof result.error === 'object' ? 
+                        (result.error.message || result.error.err || JSON.stringify(result.error)) : 
+                        result.error;
+                    status.textContent = "Lỗi: " + (errorMsg || "Khởi tạo thất bại");
+                    status.className = 'error';
+                    status.style.display = 'block';
+                    btn.disabled = false;
+                    btn.classList.remove('loading');
+                }
+            } catch (err) {
+                status.textContent = "Lỗi kết nối. Vui lòng thử lại sau.";
+                status.className = 'error';
+                status.style.display = 'block';
+                btn.disabled = false;
+                btn.classList.remove('loading');
+            }
+        });
+
+        async function startPolling(slug) {
+            progressSection.style.display = 'block';
+            let tries = 0;
+            const maxTries = 40; 
+            
+            const poll = setInterval(async () => {
+                tries++;
+                const progressNum = Math.min((tries / 25) * 100, 99); 
+                progressBar.style.width = progressNum + '%';
+                progressPercent.textContent = Math.round(progressNum) + '%';
+
+                try {
+                    const res = await fetch(`/status/${slug}`);
+                    const data = await res.json();
+
+                    if (data.message) {
+                        progressLabel.textContent = data.message;
+                    }
+
+                    if (data.ready) {
+                        clearInterval(poll);
+                        progressBar.style.width = '100%';
+                        progressPercent.textContent = '100%';
+                        progressLabel.textContent = "Hệ thống đã sẵn sàng!";
+                        status.innerHTML = `Thành công! SmartDesk của bạn đã sẵn sàng tại: <a href="${data.url}" target="_blank" style="color: inherit; text-decoration: underline; font-weight: bold;">Truy cập ngay</a>`;
+                        status.className = 'success';
+                        btn.classList.remove('loading');
+                        btn.style.display = 'none';
+                    }
+                } catch (e) {
+                    console.error("Lỗi polling", e);
+                }
+
+                if (tries >= maxTries) {
+                    clearInterval(poll);
+                    progressLabel.textContent = "Tiến trình đang mất nhiều thời gian hơn dự kiến.";
+                }
+            }, 10000); 
+        }
+    </script>
+</body>
+</html>
